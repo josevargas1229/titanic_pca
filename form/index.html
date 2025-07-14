@@ -9,53 +9,53 @@
 </head>
 <body class="bg-gray-100 font-sans">
     <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold text-center mb-4">🚢 Titanic Survival Predictor</h1>
-        <p class="text-center mb-8">Enter passenger details to predict survival probability</p>
+        <h1 class="text-3xl font-bold text-center mb-4">🚢 Predictor de supervivencia del Titanic</h1>
+        <p class="text-center mb-8">Ingresa los detalles de un pasajero para predecir si sobrevivió.</p>
 
         <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
             <div class="mb-4">
-                <h2 class="text-xl font-semibold">📋 About the inputs:</h2>
-                <p>Provide passenger details such as class, age, fare, cabin, and sex. The model will predict whether the passenger survived or not.</p>
+                <h2 class="text-xl font-semibold">📋 Acerca de las entradas:</h2>
+                <p>Porporciona detalles de los pasajeros como clase, edad, tarifa, cabina, y sexo. El modelo predicirá si el pasajero sobrevivió o no.</p>
             </div>
 
             <form id="prediction-form" class="space-y-4">
                 <div>
-                    <label for="pclass" class="block text-sm font-medium text-gray-700">🛳️ Passenger Class</label>
+                    <label for="pclass" class="block text-sm font-medium text-gray-700">🛳️ Clase</label>
                     <select id="pclass" name="pclass" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                        <option value="1">1st Class</option>
-                        <option value="2">2nd Class</option>
-                        <option value="3">3rd Class</option>
+                        <option value="1">1ra clase</option>
+                        <option value="2">2da clase</option>
+                        <option value="3">3ra clase</option>
                     </select>
                 </div>
 
                 <div>
-                    <label for="age" class="block text-sm font-medium text-gray-700">🎂 Age</label>
-                    <input type="number" id="age" name="age" step="0.1" min="0" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="e.g., 30">
+                    <label for="age" class="block text-sm font-medium text-gray-700">🎂 Edad</label>
+                    <input type="number" id="age" name="age" step="0.1" min="0" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="ej., 30">
                 </div>
 
                 <div>
-                    <label for="fare" class="block text-sm font-medium text-gray-700">💵 Fare</label>
-                    <input type="number" id="fare" name="fare" step="0.01" min="0" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="e.g., 8.05">
+                    <label for="fare" class="block text-sm font-medium text-gray-700">💵 Tarifa</label>
+                    <input type="number" id="fare" name="fare" step="0.01" min="0" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="ej., 8.05">
                 </div>
 
                 <div>
-                    <label for="cabin" class="block text-sm font-medium text-gray-700">🛏️ Cabin</label>
-                    <input type="text" id="cabin" name="cabin" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="e.g., Unknown or C85">
+                    <label for="cabin" class="block text-sm font-medium text-gray-700">🛏️ Cabina</label>
+                    <input type="text" id="cabin" name="cabin" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="ej., Unknown or C85">
                 </div>
 
                 <div>
-                    <label for="sex" class="block text-sm font-medium text-gray-700">🚻 Sex</label>
+                    <label for="sex" class="block text-sm font-medium text-gray-700">🚻 Sexo</label>
                     <select id="sex" name="sex" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="male">Hombre</option>
+                        <option value="female">Mujer</option>
                     </select>
                 </div>
 
-                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">🔍 Predict Survival</button>
+                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">🔍 Predecir</button>
             </form>
 
             <div id="loading" class="hidden mt-4 text-center">
-                <p>Analyzing passenger data...</p>
+                <p>Prediciendo...</p>
             </div>
 
             <div id="result" class="hidden mt-4 p-4 bg-gray-50 rounded-md"></div>
@@ -96,14 +96,8 @@
 
                 if (response.ok) {
                     result.innerHTML = `
-                        <h3 class="text-lg font-semibold">Prediction Result</h3>
-                        <p><strong>Prediction:</strong> ${data.prediction.class}</p>
-                        <p><strong>Confidence:</strong> ${(data.confidence * 100).toFixed(2)}%</p>
-                        <p><strong>Probabilities:</strong></p>
-                        <ul>
-                            <li>Did not survive: ${(data.probabilities['Did not survive'] * 100).toFixed(2)}%</li>
-                            <li>Survived: ${(data.probabilities['Survived'] * 100).toFixed(2)}%</li>
-                        </ul>
+                        <h3 class="text-lg font-semibold">Resultado de la predicción:</h3>
+                        <p><strong>${data.prediction.class}</strong></p>
                     `;
                     result.classList.remove('hidden');
                 } else {

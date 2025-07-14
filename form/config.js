@@ -53,7 +53,7 @@ class ConfigLoader {
     }
 
     getApiUrl() {
-        return this.get('API_URL', 'http://localhost:5000');
+        return this.get('API_URL', 'https://titanic-pca-dfxo.onrender.com');
     }
 
     isDebug() {

@@ -83,8 +83,8 @@
             result.classList.add('hidden');
 
             try {
-                await window.configLoader.loadConfig();
-                const apiUrl = window.configLoader.getApiUrl();
+            
+                const apiUrl = "https://titanic-pca-dfxo.onrender.com";
                 
                 const response = await fetch(`${apiUrl}/predict`, {
                     method: 'POST',
